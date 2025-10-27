@@ -1,0 +1,17 @@
+{
+    "name": "frr-router",
+    "category": "router",
+    "description": "FRRouting Project",
+    "vendor_name": "FRRouting Project",
+    "vendor_url": "https://frrouting.org/",
+    "documentation_url": "https://docs.frrouting.org/en/latest/",
+    "product_name": "FRRouting Project",
+    "registry_version": 3,
+    "status": "experimental",
+    "maintainer": "FRRouting Project",
+    "maintainer_email": "<undisclosed>",
+    "docker": {
+        "adapters": 4,
+        "image": "quay.io/frrouting/frr:10.0.4"
+    }
+}
