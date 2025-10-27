@@ -12,6 +12,6 @@
     "maintainer_email": "<undisclosed>",
     "docker": {
         "adapters": 4,
-        "image": "quay.io/frrouting/frr:10.0.4"
+        "image": "ghcr.io/maxotta/kiv-psi-frr-docker:latest"
     }
 }
