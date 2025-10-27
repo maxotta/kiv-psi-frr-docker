@@ -23,6 +23,7 @@ export PATHD=${ENABLE_PATH:-no}
 envsubst < /etc/frr/daemons.template > /etc/frr/daemons
 
 /usr/lib/frr/docker-start &
+sleep 10 # wait for daemons to start (otherwise vtysh may claim no daemons are running)
 while :; do
   /usr/bin/vtysh ;
   echo '==> NOPE ! Exiting the shell would also stop the Docker container! Please close the terminal window instead.';
