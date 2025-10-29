@@ -1,7 +1,7 @@
 {
-    "name": "FRRouting 10.0.4",
+    "name": "frr-router",
     "category": "router",
-    "description": "FRRouting Project",
+    "description": "FRRouting Project version 10.0.4",
     "vendor_name": "FRRouting Project",
     "vendor_url": "https://frrouting.org/",
     "documentation_url": "https://docs.frrouting.org/en/latest/",
