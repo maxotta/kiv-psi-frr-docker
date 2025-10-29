@@ -1,6 +1,6 @@
 #!/bin/sh
-touch /etc/frr/vtysh.conf
 
+# Set which daemons to start based on environment variables (with 'no' defaults)
 export BGPD=${ENABLE_BGP:-no}
 export OSPFD=${ENABLE_OSPF:-no}
 export OSPF6D=${ENABLE_OSPF6:-no}
@@ -20,6 +20,22 @@ export FABRICD=${ENABLE_FABRIC:-no}
 export VRRPD=${ENABLE_VRRP:-no}
 export PATHD=${ENABLE_PATH:-no}
 
+# We must store the FRR configuration files in a persistent location, so they are not lost
+# when the container is removed. We use /etc/network/frr for that purpose.
+# Moreover, the /etc/network directory of each container is also included in the project's archive,
+# when exporting the project using the "Export portable project" feature of the GNS3 GUI.
+
+# Check if /etc/network/frr persistent configuration directory exists
+if [ ! -d /etc/network/frr ] && [ -d /etc/frr ] ; then
+# If yes, move existing configs to persistent directory and create a symlink to it
+  mv /etc/frr/ /etc/network/frr
+  ln -s /etc/network/frr /etc/frr
+fi
+
+# Create vtysh.conf if it does not exist. Empty is OK
+touch /etc/frr/vtysh.conf
+
+# Generate the /etc/frr/daemons file from the template
 envsubst < /etc/frr/daemons.template > /etc/frr/daemons
 
 /usr/lib/frr/docker-start &
@@ -28,3 +44,5 @@ while :; do
   /usr/bin/vtysh ;
   echo '==> NOPE ! Exiting the shell would also stop the Docker container! Please close the terminal window instead.';
 done
+
+# EOF
