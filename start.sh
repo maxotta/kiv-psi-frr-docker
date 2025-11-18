@@ -32,8 +32,10 @@ if [ ! -d /etc/network/frr ] && [ -d /etc/frr ] ; then
   ln -s /etc/network/frr /etc/frr
 fi
 
-# Create vtysh.conf if it does not exist. Empty is OK
+# Create vtysh.conf and integrated /etc/frr/frr.conf if it does not exist. Empty is OK
 touch /etc/frr/vtysh.conf
+touch /etc/frr/frr.conf
+chown frr:frr /etc/frr/*
 
 # Generate the /etc/frr/daemons file from the template
 envsubst < /etc/frr/daemons.template > /etc/frr/daemons
