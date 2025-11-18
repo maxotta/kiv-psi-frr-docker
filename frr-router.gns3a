@@ -1,5 +1,5 @@
 {
-    "name": "frr-router",
+    "name": "FRRouting 10.0.4",
     "category": "router",
     "description": "FRRouting Project version 10.0.4",
     "vendor_name": "FRRouting Project",
@@ -12,6 +12,6 @@
     "maintainer_email": "<undisclosed>",
     "docker": {
         "adapters": 4,
-        "image": "ghcr.io/maxotta/kiv-psi-frr-docker:v0.92"
+        "image": "ghcr.io/maxotta/kiv-psi-frr-docker:v0.94"
     }
 }
