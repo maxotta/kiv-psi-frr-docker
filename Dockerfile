@@ -7,6 +7,7 @@ COPY daemons.template /usr/lib/frr/daemons.template
 COPY start.sh /usr/lib/frr/start.sh
 RUN chmod +x /usr/lib/frr/start.sh
 RUN rm -rf /etc/frr
+RUN ln -s /etc/network/frr /etc/frr
 
 RUN apk add gettext-envsubst
 

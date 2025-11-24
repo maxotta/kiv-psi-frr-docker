@@ -26,10 +26,8 @@ export PATHD=${ENABLE_PATH:-no}
 # when exporting the project using the "Export portable project" feature of the GNS3 GUI.
 
 # Check if /etc/network/frr persistent configuration directory exists
-if [ ! -d /etc/network/frr ] && [ ! -L /etc/frr ] ; then
-# If not, create /etc/network/frr and a symbolic link from /etc/frr to it.
+if [ ! -d /etc/network/frr ]  ; then
   mkdir /etc/network/frr
-  ln -s /etc/network/frr /etc/frr
 fi
 
 # Create vtysh.conf and integrated /etc/frr/frr.conf if it does not exist. Empty is OK
