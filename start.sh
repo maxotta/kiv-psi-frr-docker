@@ -26,9 +26,9 @@ export PATHD=${ENABLE_PATH:-no}
 # when exporting the project using the "Export portable project" feature of the GNS3 GUI.
 
 # Check if /etc/network/frr persistent configuration directory exists
-if [ ! -d /etc/network/frr ] && [ -d /etc/frr ] ; then
-# If yes, move existing configs to persistent directory and create a symlink to it
-  mv /etc/frr/ /etc/network/frr
+if [ ! -d /etc/network/frr ] && [ ! -L /etc/frr ] ; then
+# If not, create /etc/network/frr and a symbolic link from /etc/frr to it.
+  mkdir /etc/network/frr
   ln -s /etc/network/frr /etc/frr
 fi
 
@@ -38,7 +38,7 @@ touch /etc/frr/frr.conf
 chown frr:frr /etc/frr/*
 
 # Generate the /etc/frr/daemons file from the template
-envsubst < /etc/frr/daemons.template > /etc/frr/daemons
+envsubst < /usr/lib/frr/daemons.template > /etc/frr/daemons
 
 /usr/lib/frr/docker-start &
 sleep 10 # wait for daemons to start (otherwise vtysh may claim no daemons are running)
